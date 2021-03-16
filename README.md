@@ -6,4 +6,8 @@ In this app, I created a database that stores information about employees such a
 
 The technology that was used in this app were MySQL, Node, Inquirer to run the information through the terminal. This was great practice to learn back end coding.
 
-Enjoy The App!
+## Demo Video
+
+https://drive.google.com/file/d/1Y1kd8ryc-_whwMBY2YWJRYsN3aadzEiU/view
+
+Enjot the App!
