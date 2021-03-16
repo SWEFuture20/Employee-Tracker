@@ -4,7 +4,7 @@ var inquirer = require("inquirer");
 var connection = mysql.createConnection({
   host: "localhost",
 
-  port: 5500,
+  port: 3306,
 
   // Your username
   user: "root",
@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-    // if (err) throw err;
+    if (err) throw err;
     askEmployees();
   });
 
@@ -29,39 +29,105 @@ connection.connect(function(err) {
         "View All Departments",
         "View All Employees",
         "View All Roles",
+        "Add Employees",
+        "Add Departments",
+        "Add Roles",
+        "Update Employee Role"
       ]
       })
       .then(function(answer) {
         switch (answer.action) {
         case "View All Departments":
-          deptSearch();
+          viewDepartment();
           break;
+
+        case "View All Employees":
+          viewEmployees();
+          break;
+
+          case "View All Roles":
+            viewRoles();
+            break;
+  
+          case "Add Employee":
+            addEmployee();
+            break;
+  
+          case "Add Department":
+            addDepartment();
+            break;
+  
+          case "Add Role":
+            addRole();
+            break;
+  
+          case "Update Employee Role":
+            updateEmployeeRole();
+            break; 
         }
       });
 }
 
-function deptSearch() {
-  inquirer
-    .prompt({
-      name: "department",
-      type: "rawlist",
-      message: "Which department do you want to search?",
-      choices:[
-        "Hardware",
-        "Data",
-        "Security",
-      ]
-    })
-    .then(function(answer) {
-      var query = "SELECT name_p, first_name, last_name FROM department, employee WHERE ?";
-      connection.query(query, function(err, res) {
-        if (answer.action === "Hardware"){
-          console.log("ID: " + res[i].id + " || Department: " + res[i].name_p);
-        }
-        // for (var i = 0; i < res.length; i++) {
-        //   console.log("Position: " + res[i].id + " || Song: " + res[i].name_p);
-        // }
-        askEmployees();
-      });
-    });
+function viewDepartment(){
+var query ="SELECT * FROM department"
+connection.query(query, function(err, res){
+  console.table(res)
+  askEmployees()
+})
 }
+
+function viewEmployees() {
+  var query = "SELECT * FROM employee"
+  connection.query(query, function (err, res) {
+    console.table(res)
+    askEmployees()
+  })
+
+}
+
+function viewRoles(){
+  var query = "SELECT * FROM roles"
+  connection.query(query, function (err,res){
+    console.table(res)
+    askEmployees()
+  })
+}
+
+
+  const employeesQuestions = [
+      {
+    name: "first_name",
+      type: "input",
+      message: "What is the persons first name?"
+    },
+    {
+      name: "last_name",
+      type:"input",
+      message: "What is the persons last name?"
+    },
+    {
+      name: "title",
+      type:"input",
+      message: "What is the persons title?",
+    },
+    {
+      name: "salary",
+      type:"input",
+      message: "How much is this person making?",
+    },
+    {
+      name: "name_p",
+      type:"input",
+      message: "What is the persons department name?", 
+    }
+    ]
+    function askEmployees(){
+    inquirer.prompt(employeesQuestions).then(answer => {
+      console.table(answer);
+        askEmployees();
+      })
+    }
+
+    askEmployees();
+
+    

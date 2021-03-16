@@ -22,10 +22,10 @@ id INT AUTO_INCREMENT,
 first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
 role_id INT NOT NULL,
-manager_id INT NOT NULL,
+manager_id INT NULL,
 PRIMARY KEY (id)
 );
 
--- SELECT * FROM department;
--- select * from roles;
--- select * from employee;
+SELECT * FROM department;
+select * from roles;
+select * from employee;
