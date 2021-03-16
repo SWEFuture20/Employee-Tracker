@@ -10,4 +10,12 @@ The technology that was used in this app were MySQL, Node, Inquirer to run the i
 
 https://drive.google.com/file/d/1Y1kd8ryc-_whwMBY2YWJRYsN3aadzEiU/view
 
-Enjot the App!
+## Contact
+
+Latifah Lillie
+
+Email: queen1892@gmail.com
+
+Linkedin: https://www.linkedin.com/in/latifah-lillie/
+
+Enjoy the App!
